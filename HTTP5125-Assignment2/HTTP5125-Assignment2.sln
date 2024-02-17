@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34408.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTTP5125-Assignment2", "HTTP5125-Assignment2\HTTP5125-Assignment2.csproj", "{A37E6816-0EEA-470B-8F37-376A35088CDE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A37E6816-0EEA-470B-8F37-376A35088CDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A37E6816-0EEA-470B-8F37-376A35088CDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A37E6816-0EEA-470B-8F37-376A35088CDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A37E6816-0EEA-470B-8F37-376A35088CDE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AD9C2579-8D61-4D72-9CBB-3D8039DEB70C}
+	EndGlobalSection
+EndGlobal
