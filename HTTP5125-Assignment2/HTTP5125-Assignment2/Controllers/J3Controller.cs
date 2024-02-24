@@ -24,13 +24,13 @@ namespace HTTP5125_Assignment2.Controllers
         /// Returns the next distinct year from the starting year
         /// </returns>
         /// <example>
-        /// Get api/J3/distinctYear/1987 -> 2013
+        /// Get ../api/J3/distinctYear/1987 -> 2013
         /// </example>
         /// <example>
-        /// Get api/J3/distinctYear/999 -> 1023
+        /// Get ../api/J3/distinctYear/999 -> 1023
         /// </example>
         /// <example>
-        /// Get api/J3/distinctYear/2014 -> 2015
+        /// Get ../api/J3/distinctYear/2014 -> 2015
         /// </example>
 
         [HttpGet]
@@ -68,7 +68,6 @@ namespace HTTP5125_Assignment2.Controllers
                 if (repeatedDigit == false)
                 {
                     stopLoop = true;
-                    break;
                 }
                 else { year = year + 1; }
             }

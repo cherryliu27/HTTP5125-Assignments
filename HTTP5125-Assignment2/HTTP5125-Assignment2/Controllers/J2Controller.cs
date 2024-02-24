@@ -29,10 +29,10 @@ namespace HTTP5125_Assignment2.Controllers
         /// If there are more B votes than A Votes -> A
         /// If there are an equal number of A Votes and B Votes -> Tie </returns>
         /// <example>
-        /// GET api/J2/Vote/6/ABBABB -> B
+        /// GET ../api/J2/Vote/6/ABBABB -> B
         /// </example>
         /// <example>
-        /// GET api/J2/Vote/6/AAABBB -> Tie
+        /// GET ../api/J2/Vote/6/AAABBB -> Tie
         /// </example>
 
         [HttpGet]

@@ -21,10 +21,10 @@ namespace HTTP5125_Assignment2.Controllers
         /// Returns a string with total calorie count -> "Your total calorie count is {total}"
         /// </returns>
         /// <example>
-        /// GET api/J1/Menu/4/4/4/4 -> "Your total calorie count is 0"
+        /// GET ../api/J1/Menu/4/4/4/4 -> "Your total calorie count is 0"
         /// </example>
         /// <example>
-        /// GET api/J1/Menu/1/2/3/4 -> "Your total calorie count is 691"
+        /// GET ../api/J1/Menu/1/2/3/4 -> "Your total calorie count is 691"
         /// </example>
 
         [HttpGet]
