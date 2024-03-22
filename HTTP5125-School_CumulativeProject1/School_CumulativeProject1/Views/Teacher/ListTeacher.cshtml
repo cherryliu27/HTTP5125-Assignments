@@ -1,0 +1,20 @@
+﻿@model IEnumerable<School_CumulativeProject1.Models.Teacher>
+
+@{
+    ViewBag.Title = "List of School Teachers";
+}
+
+<h2>List of School Teachers</h2>
+
+<form action="/Teacher/List" method="GET">
+    <input type="text" name="SearchKey"/>
+    <button>Search</button>
+</form>
+
+@{ 
+    foreach (School_CumulativeProject1.Models.Teacher Teacher in Model)
+            {
+                <div><a href="/Teacher/ShowTeacher/@Teacher.TeacherId">@Teacher.TeacherFname @Teacher.TeacherLname</a></div>
+            }
+}
+
