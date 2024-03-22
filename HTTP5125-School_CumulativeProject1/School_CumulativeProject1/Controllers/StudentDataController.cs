@@ -77,7 +77,7 @@ namespace School_CumulativeProject1.Controllers
         /// A student object
         /// </returns>
         /// <example>
-        /// GET api/studentdata/searchstudent/1 -> 
+        /// GET api/studentdata/findstudent/1 -> 
         /// {"StudentId":1, "StudentFname":"Sarah",
         /// "StudentLname":"Valdez", "StudentNo":"N1678", "EnrollDate":"2018-06-18"}
         /// </example>

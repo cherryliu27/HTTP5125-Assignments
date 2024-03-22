@@ -97,7 +97,7 @@ namespace School_CumulativeProject1.Controllers
         /// A teacher object
         /// </returns>
         /// <example>
-        /// GET api/teacherdata/searchteacher/1 -> 
+        /// GET api/teacherdata/findteacher/1 -> 
         /// {"TeacherId":1, "TeacherFname":"Alexander",
         /// "TeacherLname":"Bennett", "EmployeeNo":"T378", "HireDate":"2016-08-05 00:00:00",
         /// "Salary":55.30}
