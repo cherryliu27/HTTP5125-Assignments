@@ -116,7 +116,12 @@ namespace School_CumulativeProject1.Controllers
 
             //Establish new command and write query
             MySqlCommand Cmd = Conn.CreateCommand();
-            Cmd.CommandText = "select * from teachers where teacherid = " + TeacherId;
+            Cmd.CommandText = "select * from teachers where teacherid = @teacherid";
+
+            //Define keys for the parameters
+            Cmd.Parameters.AddWithValue("@teacherid", TeacherId);
+            Cmd.Prepare();
+
 
             //Execute sql command
             MySqlDataReader ResultSet = Cmd.ExecuteReader();
@@ -135,7 +140,99 @@ namespace School_CumulativeProject1.Controllers
                 NewTeacher.Salary = decimal.Parse(ResultSet["salary"].ToString());
             }
             return NewTeacher;
+
         }
+
+       /// <summary>
+       /// Receives teacher information and inserts into database
+       /// </summary>
+       /// <returns></returns>
+       /// <example>
+       /// POST: api/TeacherData/AddTeacher
+       /// FORM DATA / REQUEST BODY / POST CONTENT
+       /// {
+       /// "TeacherId": "0", 
+       /// "TeacherFName": "Kristen",
+       ///  "TeacherLName": "Hays",
+       ///  "EmployeeNo": "T116",
+       ///  "HireDate": "2024-04-01",
+       ///  "Salary": "30.11"
+       /// }
+       /// </example>
+        [HttpPost]
+        [Route("api/TeacherData/AddTeacher")]
+        public void AddTeacher([FromBody]Teacher NewTeacher)
+        {
+            //Create connection instance
+            MySqlConnection Conn = School.AccessDatabase();
+
+            //Open connection
+            Conn.Open();
+
+            //Establish new command and write query
+            MySqlCommand Cmd = Conn.CreateCommand();
+            
+            //write string for SQL query
+            string query = "insert into teachers (teacherid, teacherfname, teacherlname, employeenumber, hiredate, salary) values (@teacherid, @teacherfname, @teacherlname, @employeenumber, @hiredate, @salary)";
+            Cmd.CommandText = query;
+
+            //Define keys for the parameters
+            Cmd.Parameters.AddWithValue("@teacherid", 0);
+            Cmd.Parameters.AddWithValue("@teacherfname", NewTeacher.TeacherFname);
+            Cmd.Parameters.AddWithValue("@teacherlname", NewTeacher.TeacherLname);
+            Cmd.Parameters.AddWithValue("@employeenumber", NewTeacher.EmployeeNo);
+            Cmd.Parameters.AddWithValue("@hiredate", NewTeacher.HireDate);
+            Cmd.Parameters.AddWithValue("@salary", NewTeacher.Salary);
+            Cmd.Prepare();
+
+
+            //Execute insert statement
+            Cmd.ExecuteNonQuery();
+
+            //close connection
+            Conn.Close();
+
+        }
+
+
+        /// <summary>
+        /// Receives teacher id and Deletes a teacher from the system database
+        /// </summary>
+        /// <param name="TeacherId">Teacher Id</param>
+        /// <returns></returns>
+        /// <example>
+        /// POST: api/teacherdata/deleteteacher/4
+        /// </example>
+
+        [HttpPost]
+        [Route("api/TeacherData/DeleteTeacher/{TeacherId}")]
+        public void DeleteTeacher(int TeacherId)
+        {
+            //Create connection instance
+            MySqlConnection Conn = School.AccessDatabase();
+
+            //Open connection
+            Conn.Open();
+
+            //Establish new command and write query
+            MySqlCommand Cmd = Conn.CreateCommand();
+
+            //write string for SQL query
+            string query = "delete from teachers where teacherid = @teacherid";
+            Cmd.CommandText = query;
+
+            //Define keys for the parameters
+            Cmd.Parameters.AddWithValue("@teacherid", TeacherId);
+            Cmd.Prepare();
+
+            //execute query command
+            Cmd.ExecuteNonQuery();
+
+            //close connection
+            Conn.Close();
+        }
+
+        //Update Teacher
 
     }
 }

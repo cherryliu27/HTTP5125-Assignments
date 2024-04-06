@@ -1,11 +1,10 @@
 ﻿@model School_CumulativeProject1.Models.Teacher
+
 @{
-    ViewBag.Title = "About Teacher";
+    ViewBag.Title = "DeleteConfirm";
 }
 
-<a style="color:red" href="/Teacher/DeleteConfirm/@Model.TeacherId">Delete</a>
-
-<h2>@Model.TeacherFname @Model.TeacherLname</h2>
+<h2>Confirm delete below teacher?</h2>
 <p>Teacher ID: @Model.TeacherId</p>
 <p>First Name: @Model.TeacherFname</p>
 <p>Last Name: @Model.TeacherLname</p>
@@ -13,3 +12,6 @@
 <p>Hire Date: @Model.HireDate</p>
 <p>Salary: $@Model.Salary</p>
 
+<form action="/Teacher/Delete/@Model.TeacherId" method="POST">
+    <button>Confirm Delete</button>
+</form>
