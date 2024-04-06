@@ -9,20 +9,23 @@
         var form = document.forms.AddForm;
         AddForm.onsubmit = processForm;
 
-        var firstname = AddForm.TeacherFname;
-        var lastname = AddForm.TeacherLname;
-        var employeeno = AddForm.EmployeeNo;
-        var hiredate = AddForm.HireDate;
-        var salary = AddForm.Salary;
-        var inputs = document.querySelectorAll("input");
-
-   
+        //function for form validation
         function processForm() {
 
+            //delcare variables
+            var firstname = AddForm.TeacherFname;
+            var lastname = AddForm.TeacherLname;
+            var employeeno = AddForm.EmployeeNo;
+            var hiredate = AddForm.HireDate;
+            var salary = AddForm.Salary;
+            var inputs = document.querySelectorAll("input");
+
+            //Reset background input field colors
             inputs.forEach(function resetInputs(input) {
                 input.style.background = '';
             })
 
+            //Form Validation for empty fields
             if (firstname.value === "") {
                 firstname.style.background = "LightPink";
                 firstname.focus();
