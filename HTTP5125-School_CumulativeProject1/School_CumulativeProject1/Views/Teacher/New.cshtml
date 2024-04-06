@@ -4,8 +4,60 @@
 }
 
 <h2>New Teacher</h2>
+<script>
+    window.onload = function () {
+        var form = document.forms.AddForm;
+        AddForm.onsubmit = processForm;
 
-<form action="/Teacher/Create" method="POST">
+        var firstname = AddForm.TeacherFname;
+        var lastname = AddForm.TeacherLname;
+        var employeeno = AddForm.EmployeeNo;
+        var hiredate = AddForm.HireDate;
+        var salary = AddForm.Salary;
+        var inputs = document.querySelectorAll("input");
+
+   
+        function processForm() {
+
+            inputs.forEach(function resetInputs(input) {
+                input.style.background = '';
+            })
+
+            if (firstname.value === "") {
+                firstname.style.background = "LightPink";
+                firstname.focus();
+                return false;
+            }
+
+            if (lastname.value === "") {
+                lastname.style.background = "LightPink";
+                lastname.focus();
+                return false;
+            }
+
+            if (employeeno.value === "") {
+                employeeno.style.background = "LightPink";
+                employeeno.focus();
+                return false;
+            }
+
+            if (hiredate.value === "") {
+                hiredate.style.background = "LightPink";
+                hiredate.focus();
+                return false;
+            }
+
+            if (salary.value === "") {
+                salary.style.background = "LightPink";
+                salary.focus();
+                return false;
+            }
+        }
+
+    };
+</script>
+
+<form action="/Teacher/Create" method="POST" name="AddForm">
     <div>
         <label for="TeacherFname">First Name: </label>
         <input type="text" name="TeacherFname" id="TeacherFname" />
@@ -27,7 +79,7 @@
         <input type="number" name="Salary" step="any" id="Salary" />
     </div>
     <div>
-        <button>Add Teacher</button>
+        <button name="AddBtn">Add Teacher</button>
     </div>
 
 </form>
