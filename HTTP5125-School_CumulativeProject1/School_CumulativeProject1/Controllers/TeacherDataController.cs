@@ -232,7 +232,5 @@ namespace School_CumulativeProject1.Controllers
             Conn.Close();
         }
 
-        //Update Teacher
-
     }
 }
