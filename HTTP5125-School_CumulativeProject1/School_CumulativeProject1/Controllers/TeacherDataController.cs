@@ -173,11 +173,10 @@ namespace School_CumulativeProject1.Controllers
             MySqlCommand Cmd = Conn.CreateCommand();
             
             //write string for SQL query
-            string query = "insert into teachers (teacherid, teacherfname, teacherlname, employeenumber, hiredate, salary) values (@teacherid, @teacherfname, @teacherlname, @employeenumber, @hiredate, @salary)";
+            string query = "insert into teachers (teacherfname, teacherlname, employeenumber, hiredate, salary) values (@teacherfname, @teacherlname, @employeenumber, @hiredate, @salary)";
             Cmd.CommandText = query;
 
             //Define keys for the parameters
-            Cmd.Parameters.AddWithValue("@teacherid", 0);
             Cmd.Parameters.AddWithValue("@teacherfname", NewTeacher.TeacherFname);
             Cmd.Parameters.AddWithValue("@teacherlname", NewTeacher.TeacherLname);
             Cmd.Parameters.AddWithValue("@employeenumber", NewTeacher.EmployeeNo);
@@ -214,7 +213,7 @@ namespace School_CumulativeProject1.Controllers
             //Open connection
             Conn.Open();
 
-            //Establish new command and write query
+            //Establish new command and write query for deleting teacher
             MySqlCommand Cmd = Conn.CreateCommand();
 
             //write string for SQL query
@@ -228,9 +227,67 @@ namespace School_CumulativeProject1.Controllers
             //execute query command
             Cmd.ExecuteNonQuery();
 
+
             //close connection
             Conn.Close();
         }
 
+
+        //Update Teacher
+        /// <summary>
+        /// Receive teacher data and teacher id and update the information in database of that teacher id
+        /// </summary>
+        /// <example>
+        /// curl -d @testdata.json -H "Content-Type: application/json" http://localhost:63213/api/TeacherData/UpdateTeacher/1
+        /// POST api/TeacherData/UpdateTeacher/2
+        /// POST CONTENT / REQUEST BODY
+        ///{
+        /// "TeacherFName": "Kristen",
+        ///  "TeacherLName": "Hays",
+        ///  "EmployeeNo": "T116",
+        ///  "HireDate": "2024-04-01",
+        ///  "Salary": "30.11"
+        /// }
+        /// </example>
+        [HttpPost]
+        [Route("api/TeacherData/UpdateTeacher/{TeacherId}")]
+        public void UpdateTeacher(int TeacherId,[FromBody]Teacher UpdatedTeacher)
+        {
+            //Create connection instance
+            MySqlConnection Conn = School.AccessDatabase();
+
+            //Open connection
+            Conn.Open();
+
+            //Establish new command and write query for updating teacher
+            MySqlCommand Cmd = Conn.CreateCommand();
+
+            //write string for SQL query
+            string query = "update teachers set teacherfname = @teacherfname, teacherlname = @teacherlname, employeenumber = @employeenumber, hiredate = @hiredate, salary = @salary where teacherid = @teacherid" ;
+            Cmd.CommandText = query;
+
+            //Define keys for the parameters
+            Cmd.Parameters.AddWithValue("@teacherfname", UpdatedTeacher.TeacherFname);
+            Cmd.Parameters.AddWithValue("@teacherlname", UpdatedTeacher.TeacherLname);
+            Cmd.Parameters.AddWithValue("@employeenumber", UpdatedTeacher.EmployeeNo);
+            Cmd.Parameters.AddWithValue("@hiredate", UpdatedTeacher.HireDate);
+            Cmd.Parameters.AddWithValue("@salary", UpdatedTeacher.Salary);
+            Cmd.Parameters.AddWithValue("@teacherid", TeacherId);
+
+            Cmd.Prepare();
+
+            //execute query command
+            Cmd.ExecuteNonQuery();
+
+
+            //close connection
+            Conn.Close();
+            
+            return;
+        }
+
     }
+
+
 }
+

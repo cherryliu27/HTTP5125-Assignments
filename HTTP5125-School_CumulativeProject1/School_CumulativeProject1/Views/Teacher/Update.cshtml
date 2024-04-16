@@ -1,0 +1,102 @@
+﻿@model School_CumulativeProject1.Models.Teacher
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<script>
+    window.onload = function () {
+        updateForm.onsubmit = validateForm;
+
+        function validateForm() {
+
+
+            var firstname = updateForm.TeacherFname;
+            var lastname = updateForm.TeacherLname;
+            var employeeno = updateForm.EmployeeNo;
+            var hiredate = updateForm.HireDate;
+            var salary = updateForm.Salary;
+
+
+            // Check if fields are empty
+            if (firstname.value === "") {
+                document.querySelector("#FirstNameError").innerText = "Please enter First Name";
+                return false;
+            } else {
+                document.querySelector("#FirstNameError").innerText = "";
+            }
+
+            if (lastname.value === "") {
+                document.querySelector("#LastNameError").innerText = "Please enter Last Name";
+                return false;
+            } else {
+                document.querySelector("#LastNameError").innerText = "";
+            }
+
+            if (employeeno.value === "") {
+                document.querySelector("#EmployeeNoError").innerText = "Please enter Employee No";
+                return false;
+            } else {
+                document.querySelector("#EmployeeNoError").innerText = "";
+            }
+
+            if (hiredate.value === "") {
+                document.querySelector("#HireDateError").innerText = "Please enter Hire Date";
+                return false;
+            } else {
+                document.querySelector("#HireDateError").innerText = "";
+            }
+
+            if (salary.value === "") {
+                document.querySelector("#SalaryError").innerText = "Please enter Salary";
+                return false;
+            } else {
+                document.querySelector("#SalaryError").innerText = "";
+            }
+
+            // If all validations pass, return true to submit the form
+            return true;
+        }
+    }
+</script>
+
+
+
+<h2>Update Teacher</h2>
+
+<form action="/Teacher/Edit/@Model.TeacherId" method="POST" name="updateForm">
+    <div>
+        <label for="TeacherFname">First Name: </label>
+        <input type="text" name="TeacherFname" class="TeacherFname" value="@Model.TeacherFname" />
+        <span id="FirstNameError" style="color: red;"></span>
+    </div>
+    <div>
+        <label for="TeacherLname">Last Name: </label>
+        <input type="text" name="TeacherLname" class="TeacherLname" value="@Model.TeacherLname" />
+        <span id="LastNameError" style="color: red;"></span>
+
+    </div>
+    <div>
+        <label for="EmployeeNo">Employee No: </label>
+        <input type="text" name="EmployeeNo" class="EmployeeNo" value="@Model.EmployeeNo" />
+        <span id="EmployeeNoError" style="color: red;"></span>
+
+    </div>
+    <div>
+        <label for="HireDate">Hire Date: </label>
+        <input type="date" name="HireDate" class="HireDate" value="@Model.HireDate.ToString("yyyy-MM-dd")" />
+        <span id="HireDateError" style="color: red;"></span>
+
+    </div>
+    <div>
+        <label for="Salary">Salary($): </label>
+        <input type="number" name="Salary" step="any" class="Salary" value="@Model.Salary" />
+        <span id="SalaryError" style="color: red;"></span>
+
+    </div>
+    <div>
+        <button name="AddBtn">Update Teacher</button>
+    </div>
+
+</form>
+

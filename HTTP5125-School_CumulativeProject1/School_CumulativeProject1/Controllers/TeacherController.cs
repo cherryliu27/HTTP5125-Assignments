@@ -101,6 +101,34 @@ namespace School_CumulativeProject1.Controllers
 
         }
 
-        
+        //GET: /Teacher/Update/{teacherid} -> Allows user to update informaiton of teacher
+        public ActionResult Update(int id) { 
+
+            TeacherDataController Controller = new TeacherDataController();
+            Teacher SelectedTeacher = Controller.FindTeacher(id);
+            //Redirects to Views/Teacher/Update.cshtml
+            return View(SelectedTeacher); 
+        }
+
+        //POST: /Teacher/Edit/{teacherid} -> Receives teacher information to update
+        [HttpPost]
+        public ActionResult Edit(int id, string TeacherFname, string TeacherLname, string EmployeeNo, DateTime HireDate, decimal Salary) {
+
+
+            TeacherDataController Controller = new TeacherDataController();
+
+            Teacher UpdatedTeacher = new Teacher();
+            UpdatedTeacher.TeacherFname = TeacherFname;
+            UpdatedTeacher.TeacherLname = TeacherLname;
+            UpdatedTeacher.EmployeeNo = EmployeeNo;
+            UpdatedTeacher.HireDate = HireDate;
+            UpdatedTeacher.Salary = Salary;
+
+
+            Controller.UpdateTeacher(id,UpdatedTeacher);
+
+            //Redirects to /Views/Teacher/ShowTeacher/{TeacherId}
+            return RedirectToAction("ShowTeacher/"+id);
+        }
     }
 }
