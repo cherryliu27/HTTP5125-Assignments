@@ -61,6 +61,16 @@ namespace School_CumulativeProject1.Controllers
 
         }
 
+
+        /// <summary>
+        /// Creates new teacher with user provided information to the database
+        /// </summary>
+        /// <param name="TeacherFName">teacher first name</param>
+        /// <param name="TeacherLName">teacher last name</param>
+        /// <param name="EmployeeNo">teacher's employee number</param>
+        /// <param name="HireDate">teacher's hire date</param>
+        /// <param name="Salary">teacher's salary</param>
+        /// <returns>Redirect to the ListTeacher cshtml to display the updated list of teachers</returns>
         //POST: Teacher/Create -> Redirects to listteacher.cshtml
         [HttpPost]
         public ActionResult Create(string TeacherFName, string TeacherLName, string EmployeeNo, DateTime HireDate, decimal Salary)
@@ -83,6 +93,12 @@ namespace School_CumulativeProject1.Controllers
         }
 
 
+
+        /// <summary>
+        /// outputs a web page that allows user to confirm deletion of the specified teacher id
+        /// </summary>
+        /// <param name="id">the teache id</param>
+        /// <returns>Returns a view displaying the information of the selected teacher for delete confirmation</returns>
         //GET: /Teacher/DeleteConfirm/{id} -> Outputs a web page that allows user to confirm deletion
         public ActionResult DeleteConfirm(int id)
         {
@@ -91,6 +107,13 @@ namespace School_CumulativeProject1.Controllers
             return View(SelectedTeacher);
         }
 
+
+
+        /// <summary>
+        /// Deletes the teacher of the specified id then redirect to the ListTeacher.cshtml
+        /// </summary>
+        /// <param name="id">the teacher id</param>
+        /// <returns>Redirects to ListTeacher.cshtml after deleting the specified teacher.</returns>
         //POST: /Teacher/Delete/{id} -> Reroute to ListTeacher.cshtml
         [HttpPost]
         public ActionResult Delete(int id) 
@@ -98,10 +121,17 @@ namespace School_CumulativeProject1.Controllers
             TeacherDataController TeacherController = new TeacherDataController();
             TeacherController.DeleteTeacher(id);
             return RedirectToAction("ListTeacher");
-
         }
 
+
+
+
         //GET: /Teacher/Update/{teacherid} -> Allows user to update informaiton of teacher
+        /// <summary>
+        /// Shows a page for adding new teacher information
+        /// </summary>
+        /// <param name="id">the teacher id to be updated</param>
+        /// <returns>View containing the information of the selected teacher for updating</returns>
         public ActionResult Update(int id) { 
 
             TeacherDataController Controller = new TeacherDataController();
@@ -110,10 +140,21 @@ namespace School_CumulativeProject1.Controllers
             return View(SelectedTeacher); 
         }
 
+
         //POST: /Teacher/Edit/{teacherid} -> Receives teacher information to update
+        /// <summary>
+        /// Receives POST request of the updated teacher information, updates teacher information and redirects to the corresponding teacher's page
+        /// </summary>
+        /// <param name="id">updated teacher id</param>
+        /// <param name="TeacherFname">updated teacher first name</param>
+        /// <param name="TeacherLname">updated teacher last name</param>
+        /// <param name="EmployeeNo">updated employee number</param>
+        /// <param name="HireDate">updated hiredate</param>
+        /// <param name="Salary">updated salary</param>
+        /// <returns>Returns a redirection to the teacher's information page of that teacher id</returns>
+
         [HttpPost]
         public ActionResult Edit(int id, string TeacherFname, string TeacherLname, string EmployeeNo, DateTime HireDate, decimal Salary) {
-
 
             TeacherDataController Controller = new TeacherDataController();
 
@@ -123,7 +164,6 @@ namespace School_CumulativeProject1.Controllers
             UpdatedTeacher.EmployeeNo = EmployeeNo;
             UpdatedTeacher.HireDate = HireDate;
             UpdatedTeacher.Salary = Salary;
-
 
             Controller.UpdateTeacher(id,UpdatedTeacher);
 
